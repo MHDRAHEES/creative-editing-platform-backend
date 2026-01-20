@@ -51,15 +51,16 @@ export const toggleFavourite = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const isFav = user.favourites.some(
-      id => id.toString() === mediaId
-    );
+const isFav = user.favourites.some(
+  (id) => id && id.equals(mediaId)
+);
 
-    if (isFav) {
-      user.favourites.pull(mediaId);
-    } else {
-      user.favourites.push(mediaId);
-    }
+if (isFav) {
+  user.favourites.pull(mediaId);
+} else {
+  user.favourites.addToSet(mediaId); // prevents duplicates
+}
+
 
     await user.save();
 
@@ -83,17 +84,21 @@ export const toggleFavourite = async (req, res) => {
 export const getFavourites = async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
-      .populate("favorites");
+      .populate("favourites"); // ✅ correct field
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json(user.favourites);
+    res.status(200).json({
+      success: true,
+      favourites: user.favourites,
+    });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
-
-

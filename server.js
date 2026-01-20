@@ -7,6 +7,7 @@ import corsMiddleware from "./middleware/cors_middleware.js";
 import uploadRoutes from "./Routes/upload_routes.js"
 import deleteRoutes from "./Routes/delete_routs.js";
 import bookingRoutes from './Routes/booking_routs.js'
+import patchRouts from "./Routes/Patch_routs.js"
 dotenv.config();
 connectDB();
 
@@ -20,6 +21,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api", uploadRoutes);
 app.use("/api", deleteRoutes);
 app.use("/api", bookingRoutes);
+app.use("/api",patchRouts)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
