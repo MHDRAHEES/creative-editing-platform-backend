@@ -8,7 +8,7 @@ export const deleteBooking = async (req, res) => {
     if (!booking) {
       return res.status(404).json({
         success: false,
-        message: "User not found",
+        message: "Booking Data not found",
       });
     }
 
@@ -16,7 +16,7 @@ export const deleteBooking = async (req, res) => {
 
     res.json({
       success: true,
-      message: "User deleted successfully",
+      message: "Booking deleted successfully",
     });
   } catch (error) {
     console.error(error);
