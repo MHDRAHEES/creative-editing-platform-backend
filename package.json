@@ -6,11 +6,10 @@
   "author": "",
   "type": "module",
   "main": "server.js",
-"scripts": {
-  "dev": "nodemon server.js",
-  "start": "node server.js"
-},
-
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
   "devDependencies": {
     "nodemon": "^3.1.11"
   },
@@ -20,6 +19,7 @@
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
     "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.0.0",
     "mongoose": "^9.0.1",
     "multer": "^2.0.2"
   }
