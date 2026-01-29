@@ -1,9 +1,10 @@
 import cors from "cors";
 
 const corsMiddleware = cors({
-  origin: "http://localhost:5173", // frontend URL
+  origin: "*",
   methods: ["GET", "POST", "PATCH", "DELETE"],
-  credentials: true,
+  credentials: false
 });
 
 export default corsMiddleware;
+
